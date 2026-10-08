@@ -1,0 +1,229 @@
+{
+  "package_version": "0.1.0",
+  "formula_specification_date": "2026-09-29",
+  "build_date": "2026-10-08",
+  "source": {
+    "filename": "SDBT_v1_master_20260929.xlsx",
+    "sha256": "21add4a2c14f45f73be1526385d67ba1fd65666484207f78532717bf5b5fe6c6"
+  },
+  "summary": {
+    "panel_records": 721,
+    "gene_registry_records": 684,
+    "carrier_frequency_records": 8822,
+    "review_issue_records": 273,
+    "source_registry_records": 19,
+    "route_counts": {
+      "DEAD_PAGE": 12,
+      "HOLD": 709
+    },
+    "model_counts": {
+      "SPECIAL_NGS_CHALLENGE": 12,
+      "STANDARD_AR": 637,
+      "STANDARD_XL": 72
+    },
+    "special_case_counts": {
+      "FIXED_NO_CALC": 7,
+      "HOLD_ASSAY": 5
+    }
+  },
+  "datasets": {
+    "data/curated/carrier_frequency.csv": {
+      "records": 8822,
+      "sha256": "a252978e018facb4fd8e68e3d705869b3a05204d42e7f617c4e5c782cc71b382"
+    },
+    "data/curated/gene_registry.csv": {
+      "records": 684,
+      "sha256": "38d308062db8da14aac651eacd57455844693734d4f7db70163b3ab915ddc5af"
+    },
+    "data/curated/panel_review.csv": {
+      "records": 721,
+      "sha256": "2c92ed324fd0139d1ca2c4cb330d745d4121f38ce15b8945ed46058460cf48dd"
+    },
+    "data/curated/review_issues.csv": {
+      "records": 273,
+      "sha256": "cd937a35ca0dbedc76ae481e51b08238b54de4e6cd0ca3b444d877ccbbf127a3"
+    },
+    "data/curated/source_registry.csv": {
+      "records": 19,
+      "sha256": "2cd60c2017b599337adcf26682e230e7411ded69655397d6958537135941b375"
+    },
+    "data/curated/special_cases.csv": {
+      "records": 12,
+      "sha256": "6c3f076472be695db5bc8d26d117ce8ac3c6c7e07d1b50069426665fc213c51d"
+    },
+    "data/raw/fulgent_raw.csv": {
+      "records": 1096,
+      "source_sheet": "Fulgent原始",
+      "sha256": "50c8b234b0e5bbe61de7bac207b4411f78b0a63bcfe88dbde93f4e31d94f64e7"
+    },
+    "data/raw/genie_raw.csv": {
+      "records": 684,
+      "source_sheet": "GenIE原始",
+      "sha256": "c58ce53127c1f7ae3b900f16a5354a6a7cac75cbb3c44d2acea8fd84ddf6797d"
+    },
+    "data/raw/jeen_raw.csv": {
+      "records": 880,
+      "source_sheet": "Jeen原始",
+      "sha256": "bbb18f59d3bd8617ddf8c8c083bc244caa023d40ba59c4374e09b7d67d92f355"
+    },
+    "data/raw/panel_raw.csv": {
+      "records": 721,
+      "source_sheet": "Panel原始",
+      "sha256": "1c2f4151be3c50b7174f142ffdc2376068041ad2896ebbbe1f05afc8002ab0c8"
+    }
+  },
+  "source_workbook_checks": [
+    {
+      "check_id": "C01",
+      "check_name": "Panel審查資料列",
+      "actual": 721,
+      "expected": 721,
+      "status": "PASS",
+      "note": "含新增 SMN1"
+    },
+    {
+      "check_id": "C02",
+      "check_name": "Panel審查 SMN1",
+      "actual": 1,
+      "expected": 1,
+      "status": "PASS",
+      "note": "P0721"
+    },
+    {
+      "check_id": "C03",
+      "check_name": "Gene對接 SMN1",
+      "actual": 1,
+      "expected": 1,
+      "status": "PASS",
+      "note": "HGNC:11117"
+    },
+    {
+      "check_id": "C04",
+      "check_name": "Panel原始 SMN1",
+      "actual": 1,
+      "expected": 1,
+      "status": "PASS",
+      "note": "使用者原始補入列"
+    },
+    {
+      "check_id": "C05",
+      "check_name": "GenIE原始 SMN1",
+      "actual": 1,
+      "expected": 1,
+      "status": "PASS",
+      "note": "Total 54／EAS 59"
+    },
+    {
+      "check_id": "C06",
+      "check_name": "Fulgent原始 SMN1",
+      "actual": 8,
+      "expected": 8,
+      "status": "PASS",
+      "note": "p.27 共 8 列"
+    },
+    {
+      "check_id": "C07",
+      "check_name": "頻率整理 SMN1",
+      "actual": 8,
+      "expected": 8,
+      "status": "PASS",
+      "note": "保留各族群與 silent carrier 列"
+    },
+    {
+      "check_id": "C08",
+      "check_name": "DEAD_PAGE rows",
+      "actual": 12,
+      "expected": 12,
+      "status": "PASS",
+      "note": "固定 7＋assay-dependent 5"
+    },
+    {
+      "check_id": "C09",
+      "check_name": "HOLD_ASSAY rows",
+      "actual": 5,
+      "expected": 5,
+      "status": "PASS",
+      "note": "CYP21A2、DMD×2、F8、GBA1"
+    },
+    {
+      "check_id": "C10",
+      "check_name": "FIXED_NO_CALC rows",
+      "actual": 7,
+      "expected": 7,
+      "status": "PASS",
+      "note": "AFF2、FMR1、FXN、SMN1、HBA×2、MT-RNR1"
+    },
+    {
+      "check_id": "C11",
+      "check_name": "DISPLAY_ONLY rows",
+      "actual": 12,
+      "expected": 12,
+      "status": "PASS",
+      "note": "所有 dead page carrier rates"
+    },
+    {
+      "check_id": "C12",
+      "check_name": "Alpha-thal display group rows",
+      "actual": 2,
+      "expected": 2,
+      "status": "PASS",
+      "note": "HBA1 與 HBA1/HBA2"
+    },
+    {
+      "check_id": "C13",
+      "check_name": "CALCULATE rows",
+      "actual": 0,
+      "expected": 0,
+      "status": "PASS",
+      "note": "v1 不啟用計算"
+    },
+    {
+      "check_id": "C14",
+      "check_name": "Panel原始資料列",
+      "actual": 721,
+      "expected": 721,
+      "status": "PASS",
+      "note": "原始值保存"
+    },
+    {
+      "check_id": "C15",
+      "check_name": "GenIE原始資料列",
+      "actual": 684,
+      "expected": 684,
+      "status": "PASS",
+      "note": "含 SMN1"
+    },
+    {
+      "check_id": "C16",
+      "check_name": "Fulgent原始資料列",
+      "actual": 1096,
+      "expected": 1096,
+      "status": "PASS",
+      "note": "原始值保存"
+    },
+    {
+      "check_id": "C17",
+      "check_name": "Jeen原始資料列",
+      "actual": 880,
+      "expected": 880,
+      "status": "PASS",
+      "note": "原始值保存"
+    },
+    {
+      "check_id": "C18",
+      "check_name": "空白 Model_type",
+      "actual": 0,
+      "expected": 0,
+      "status": "PASS",
+      "note": "所有 Panel rows 均須可分流"
+    },
+    {
+      "check_id": "C19",
+      "check_name": "無效 Calculator_route",
+      "actual": 0,
+      "expected": 0,
+      "status": "PASS",
+      "note": "僅允許 HOLD／DEAD_PAGE／CALCULATE"
+    }
+  ]
+}

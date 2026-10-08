@@ -1,0 +1,53 @@
+{
+  "version": "0.1.0",
+  "formula_specification_date": "2026-09-29",
+  "probability_bounds": {
+    "carrier_frequency": {
+      "minimum_exclusive": 0,
+      "maximum_inclusive": 1
+    },
+    "detection_rate": {
+      "minimum_inclusive": 0,
+      "maximum_inclusive": 1
+    },
+    "female_penetrance": {
+      "minimum_inclusive": 0,
+      "maximum_inclusive": 1
+    }
+  },
+  "routes": [
+    "CALCULATE",
+    "HOLD",
+    "DEAD_PAGE"
+  ],
+  "model_types": [
+    "STANDARD_AR",
+    "STANDARD_XL",
+    "SPECIAL_NGS_CHALLENGE",
+    "OTHER_REVIEW"
+  ],
+  "special_case_types": [
+    "FIXED_NO_CALC",
+    "HOLD_ASSAY"
+  ],
+  "carrier_rate_usage": [
+    "RISK_INPUT",
+    "PENDING_VALIDATION",
+    "DISPLAY_ONLY"
+  ],
+  "assay_dr_status": [
+    "VALIDATED",
+    "MISSING",
+    "NOT_APPLICABLE",
+    "ASSAY_REQUIRED"
+  ],
+  "formula_ids": {
+    "residual_carrier_risk": "CR_NEGATIVE_BAYES_V1",
+    "autosomal_recessive": "RR_AR_V1",
+    "x_linked_male": "RR_XL_MALE_V1",
+    "x_linked_unknown_sex": "RR_XL_UNKNOWN_V1",
+    "x_linked_female_inheritance": "P_XL_FEMALE_INHERIT_V1",
+    "x_linked_female_affected": "RR_XL_FEMALE_V1"
+  }
+}
+

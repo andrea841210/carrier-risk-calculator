@@ -1,0 +1,20 @@
+source_id,resource,role_and_scope,version_or_retrieval,url_or_verification_basis
+S01,MGsafe_gene-disease-OMIM list.xlsx,疾病項目主表；原值快照,本次上傳,COL1A2工作版依2026-09-17指示改225320；原表不改
+S02,MGsafe_GenIE-carrier rate list.xlsx,GenIE估值與人工補值混合表,AAAS交接：gnomAD4.1.1／ClinVar2026-06-06；不外推全表,https://genie.broadinstitute.org/dashboard/ENSG00000094914/
+S03,MGsafe_fulgent-carrier rate list.xlsx,Fulgent PDF轉录表,版本依PDF；未逐列原頁核實,"來源頁碼保留在原表；PDF已核p.1,2,5,12,13,14,24,31"
+S04,MGsafe_jeenhealth-carrier rate list_re.xlsx,取代無頻率舊版作本輪參考；與Fulgent同源,版本未提供,CARRIER_FREQUENCY及flugent補值欄分開；不算獨立驗證
+S05,FLY-Beacon-Supplementary-Table-V7.pdf,原始頁面及註腳,檔名V7；內頁TABLE-Beacon Supplemental-V1_03.24；©2024,p.31 *為檢測陰性；†區分alpha-thal型態；DR不移植MGsafe
+S06,HGNC complete set,現行symbol/prev_symbol/alias_symbol全表比對,2026-09-17下載；45054筆,https://storage.googleapis.com/public-download-files/hgnc/json/json/hgnc_complete_set.json
+S07,COL1A2／225320,疾病與AR核實,2026-09-17,https://www.ncbi.nlm.nih.gov/medgen/929458
+S08,DNAAF19／CCDC103,新舊名稱及PCD17,2026-09-17,https://panelapp.genomicsengland.co.uk/panels/178/gene/CCDC103/
+S09,Repeat disorders,AFF2/FMR1/FXN/AR/CSTB分流提示；非assay確效,2026-09-17,https://www.ncbi.nlm.nih.gov/books/NBK535148/
+S10,GCH1／233910,AR疾病對應,2026-09-17,https://www.ncbi.nlm.nih.gov/books/NBK622830/table/dhpr-def.T.disorders_known_to_cause_hype/
+S11,SMN1／Spinal muscular atrophy,SMN1 copy-number 與 carrier testing 方法界線,2026-10-07,https://www.ncbi.nlm.nih.gov/books/NBK1352/
+S12,HBA1/HBA2／Alpha-thalassemia,carrier genotype、deletion 與 non-deletion variant 方法界線,2026-10-07,https://www.ncbi.nlm.nih.gov/books/NBK1435/
+S13,DMD／Dystrophinopathies,DMD/BMD spectrum；sequence 與 deletion/duplication analysis,2026-10-07,https://www.ncbi.nlm.nih.gov/books/NBK1119/
+S14,F8／Hemophilia A,inversion、sequence 與 deletion/duplication analysis,2026-10-07,https://www.ncbi.nlm.nih.gov/books/NBK1404/
+S15,CYP21A2／21-hydroxylase-deficient CAH,pseudogene 與 structural variant 方法界線,2026-10-07,https://www.ncbi.nlm.nih.gov/books/NBK1171/
+S16,GBA1／Gaucher disease,GBAP1 pseudogene；需可區分 GBA1 的方法,2026-10-07,https://www.ncbi.nlm.nih.gov/books/NBK1269/
+S17,AR／Androgen insensitivity syndrome,XL 模型；sequence 與 deletion/duplication detection,2026-10-07,https://www.ncbi.nlm.nih.gov/books/NBK1429/
+S18,G6PD／OMIM 300908,G6PD gene record；保留 STANDARD_XL／HOLD,2026-10-07,https://www.ncbi.nlm.nih.gov/gene/2539
+S19,MT-RNR1／aminoglycoside-induced hearing loss,mitochondrial pharmacogenetic risk；非固定孟德爾生育風險,2026-10-07,https://cpicpgx.org/gene/MT-RNR1/
