@@ -8,6 +8,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from carrier_risk.app_service import (  # noqa: E402
+    calculation_population_rates,
+    consumer_panel_records,
     filter_panel,
     frequency_evidence,
     frequency_table,
@@ -58,6 +60,23 @@ class AppServiceTests(unittest.TestCase):
         east_asian = [row for row in table if row["族群"] == "East Asian Population"]
         self.assertEqual(len(east_asian), 1)
         self.assertEqual(east_asian[0]["帶因率"], "1 in 59")
+
+    def test_calculator_uses_separate_master_rates_by_population(self):
+        record = self.repository.panel_record("P0001")
+        rates = {rate.code: rate.denominator for rate in calculation_population_rates(
+            self.repository, record
+        )}
+        self.assertEqual(rates["TOTAL"], 537)
+        self.assertEqual(rates["AFR"], 324)
+        self.assertEqual(rates["EAS"], 1321)
+
+    def test_customer_choices_collapse_alpha_thal_display_group(self):
+        records = consumer_panel_records(self.repository.panel)
+        alpha = [
+            row for row in records if row.get("display_group_id") == "ALPHA_THAL_604131"
+        ]
+        self.assertEqual(len(alpha), 1)
+        self.assertEqual(alpha[0]["gene"], "HBA1/HBA2")
 
 
 if __name__ == "__main__":

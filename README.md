@@ -9,15 +9,18 @@ The repository separates four concerns:
 3. routing rules for standard and non-standard assay models;
 4. calculation functions for autosomal recessive and X-linked scenarios.
 
-## v0.2 application scope
+## v0.3 application scope
 
-The Streamlit prototype has three views:
+The Streamlit front end is a single consumer-facing workflow:
 
-1. **Panel routing** — search by gene, disease, OMIM, or category and render the current `CALCULATE`, `HOLD`, or `DEAD_PAGE` path.
-2. **Formula sandbox** — test standard AR and X-linked scenarios using manually supplied carrier frequency, test status, and assay detection rate.
-3. **Model notes** — keep the equations and calculation boundaries visible alongside the interface.
+1. type or select a gene name;
+2. send special or NGS-challenge genes to a dedicated information page;
+3. for standard AR or XL models, collect each partner's population and test status;
+4. display the numerical result whenever the selected scenario has all required inputs.
 
-The sandbox is deliberately separated from panel approval. Manual values do not change the curated data or promote a panel record to `CALCULATE`.
+The customer UI does not expose the former panel dashboard, governance fields,
+manual carrier-frequency inputs, or formula sandbox. The calculation engine and
+its reference scenarios remain covered by automated tests.
 
 ## Data snapshot
 
@@ -27,17 +30,22 @@ The current snapshot contains:
 - 684 gene registry records;
 - 8,822 carrier-frequency records;
 - 12 `DEAD_PAGE` records for NGS-challenge or assay-dependent models;
-- 709 `HOLD` records awaiting validated carrier-frequency and assay-specific detection-rate inputs;
+- 709 standard-model records whose route metadata remains `HOLD` pending a validated assay-specific detection rate;
 - 0 production-enabled `CALCULATE` records.
 
-The absence of production-enabled records is intentional. The formula engine and UI workflow are covered by fixed reference tests, while the current panel snapshot preserves its review gates.
+The customer calculator can still return results for standard-model scenarios
+that do not require a detection rate: `detected` uses `CR = 1`, and `untested`
+uses the selected population carrier frequency. A `not detected` scenario stays
+blocked until an assay-matched numeric detection rate is validated. This keeps
+the route metadata and its review gates intact without hiding usable
+carrier/untested calculations.
 
 ## Routing model
 
 | Route | Meaning | Front-end behavior |
 |---|---|---|
-| `CALCULATE` | Standard model with approved carrier rate, assay-specific detection rate, and complete scenario inputs | Return a numerical result |
-| `HOLD` | One or more required inputs or approvals are incomplete | Explain why calculation is unavailable |
+| `CALCULATE` | Standard model with every production input approved | Return a numerical result for complete scenarios |
+| `HOLD` | One or more production inputs or approvals are incomplete | Standard AR/XL scenarios may still calculate when their selected statuses do not need the missing input; otherwise explain the missing input |
 | `DEAD_PAGE` | Non-standard or NGS-challenge model | Display available carrier-frequency context, test limitations, and the recommended method without calculating risk |
 
 Special handling currently covers AFF2, CYP21A2, DMD, F8, FMR1, FXN, GBA1, HBA1/HBA2, MT-RNR1, and SMN1 records. See `data/curated/special_cases.csv` for disease-level rows.
@@ -73,7 +81,7 @@ Detailed definitions and applicability rules are in [docs/FORMULAS.md](docs/FORM
 | Path | Purpose |
 |---|---|
 | `src/carrier_risk/` | Calculation functions, route resolution, and CSV repository loader |
-| `streamlit_app.py` | Search, routing, special-case, and formula-sandbox interface |
+| `streamlit_app.py` | Single-gene customer calculator and route-specific result interface |
 | `.streamlit/config.toml` | Local and hosted Streamlit theme configuration |
 | `data/curated/` | Application-facing panel, mapping, frequency, source, issue, and special-case datasets |
 | `data/raw/` | Source-sheet snapshots exported from the versioned workbook |
@@ -104,5 +112,8 @@ Core validation and calculation use the standard library. Streamlit is required 
 
 ## Status and intended use
 
-This is a reference implementation and review environment. It does not replace clinical interpretation, validated laboratory procedures, genetic counseling, or a production reporting system. See [docs/UI_WORKFLOW.md](docs/UI_WORKFLOW.md) for the v0.2 interaction contract.
+This is a consumer-facing reference calculator backed by a versioned review
+dataset. It does not replace clinical interpretation, validated laboratory
+procedures, genetic counseling, or a production reporting system. See
+[docs/UI_WORKFLOW.md](docs/UI_WORKFLOW.md) for the v0.3 interaction contract.
 
