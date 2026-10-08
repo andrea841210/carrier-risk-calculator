@@ -58,3 +58,23 @@ class PanelRepository:
                 continue
             yield row
 
+    def panel_record(self, panel_row_id: str) -> dict[str, str]:
+        """Return one stable panel record or raise ``KeyError``."""
+
+        for row in self.panel:
+            if row["panel_row_id"] == panel_row_id:
+                return row
+        raise KeyError(f"unknown panel_row_id: {panel_row_id}")
+
+    def display_group_members(self, display_group_id: str) -> list[dict[str, str]]:
+        """Return all records in a non-empty front-end display group."""
+
+        normalized = display_group_id.strip()
+        if not normalized:
+            return []
+        return [row for row in self.panel if row["display_group_id"] == normalized]
+
+    @property
+    def categories(self) -> list[str]:
+        return sorted({row["category_zh"] for row in self.panel if row["category_zh"]})
+

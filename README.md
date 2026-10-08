@@ -1,6 +1,6 @@
 # Carrier Risk Calculator
 
-Versioned data contracts and a reference calculation engine for carrier risk and reproductive risk.
+Versioned data contracts, a reference calculation engine, and a Streamlit review interface for carrier and reproductive risk.
 
 The repository separates four concerns:
 
@@ -9,7 +9,17 @@ The repository separates four concerns:
 3. routing rules for standard and non-standard assay models;
 4. calculation functions for autosomal recessive and X-linked scenarios.
 
-## v0.1 scope
+## v0.2 application scope
+
+The Streamlit prototype has three views:
+
+1. **Panel routing** — search by gene, disease, OMIM, or category and render the current `CALCULATE`, `HOLD`, or `DEAD_PAGE` path.
+2. **Formula sandbox** — test standard AR and X-linked scenarios using manually supplied carrier frequency, test status, and assay detection rate.
+3. **Model notes** — keep the equations and calculation boundaries visible alongside the interface.
+
+The sandbox is deliberately separated from panel approval. Manual values do not change the curated data or promote a panel record to `CALCULATE`.
+
+## Data snapshot
 
 The current snapshot contains:
 
@@ -20,7 +30,7 @@ The current snapshot contains:
 - 709 `HOLD` records awaiting validated carrier-frequency and assay-specific detection-rate inputs;
 - 0 production-enabled `CALCULATE` records.
 
-The absence of production-enabled records is intentional. The formula engine is covered by fixed reference tests, while the current panel snapshot preserves its review gates.
+The absence of production-enabled records is intentional. The formula engine and UI workflow are covered by fixed reference tests, while the current panel snapshot preserves its review gates.
 
 ## Routing model
 
@@ -63,6 +73,8 @@ Detailed definitions and applicability rules are in [docs/FORMULAS.md](docs/FORM
 | Path | Purpose |
 |---|---|
 | `src/carrier_risk/` | Calculation functions, route resolution, and CSV repository loader |
+| `streamlit_app.py` | Search, routing, special-case, and formula-sandbox interface |
+| `.streamlit/config.toml` | Local and hosted Streamlit theme configuration |
 | `data/curated/` | Application-facing panel, mapping, frequency, source, issue, and special-case datasets |
 | `data/raw/` | Source-sheet snapshots exported from the versioned workbook |
 | `data/manifest.json` | Source hash, record counts, route totals, and dataset checksums |
@@ -72,16 +84,25 @@ Detailed definitions and applicability rules are in [docs/FORMULAS.md](docs/FORM
 
 The source workbook is not committed. Place it under `private_inputs/` when rebuilding the package.
 
-## Run validation
+## Run the application
+
+```bash
+python -m pip install -r requirements.txt
+python -m streamlit run streamlit_app.py
+```
+
+The default local URL is `http://localhost:8501`.
+
+## Run validation and tests
 
 ```bash
 python scripts/validate_data.py
 python -m unittest discover -s tests -v
 ```
 
-No external Python packages are required for validation or calculation.
+Core validation and calculation use the standard library. Streamlit is required for the interface and its smoke test.
 
 ## Status and intended use
 
-This is a reference implementation and review environment. It does not replace clinical interpretation, validated laboratory procedures, genetic counseling, or a production reporting system.
+This is a reference implementation and review environment. It does not replace clinical interpretation, validated laboratory procedures, genetic counseling, or a production reporting system. See [docs/UI_WORKFLOW.md](docs/UI_WORKFLOW.md) for the v0.2 interaction contract.
 

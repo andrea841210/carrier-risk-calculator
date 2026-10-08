@@ -18,6 +18,13 @@ from .routing import (
     RouteDecision,
     resolve_route,
 )
+from .workflows import (
+    PersonScenario,
+    ScenarioResult,
+    XLinkedScenario,
+    calculate_ar_scenario,
+    calculate_x_linked_scenario,
+)
 
 __all__ = [
     "CalculationUnavailable",
@@ -25,9 +32,14 @@ __all__ = [
     "CarrierRiskInput",
     "ModelType",
     "PanelRoutingInput",
+    "PersonScenario",
     "RouteDecision",
+    "ScenarioResult",
     "TestStatus",
+    "XLinkedScenario",
     "ar_reproductive_risk",
+    "calculate_ar_scenario",
+    "calculate_x_linked_scenario",
     "carrier_risk",
     "residual_carrier_risk",
     "resolve_route",
